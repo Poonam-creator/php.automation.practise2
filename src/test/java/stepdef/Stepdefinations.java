@@ -4,6 +4,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.BaseClass;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjects.Homepage;
@@ -17,7 +18,8 @@ public class Stepdefinations {
 
     @Given("^customer is on homepage$")
     public void customer_is_on_homepage() throws Throwable {
-        homepage.validatePageTitle();
+        String title =homepage.validatePageTitle();
+        Assert.assertEquals("My Store", title);
        }
 
     @When("^customer enters desire product$")
@@ -27,7 +29,9 @@ public class Stepdefinations {
 
     @Then("^customer should see desied product$")
     public void customer_should_see_desied_product() throws Throwable {
-        resultsPage.validateResultspage();
+        String headline =resultsPage.validateResultspage();
+        System.out.println(headline);
+        Assert.assertEquals("7 results have been found.",headline);
        }
 
     @Then("^customer clicked on product$")
